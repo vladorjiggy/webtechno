@@ -11,6 +11,107 @@
 <h2>Uebung 1</h2>
 <br>
 <p>Nr.1 a)</p>
+
+<p>import java.io.BufferedWriter;
+    import java.io.File;
+    import java.io.FileOutputStream;
+    import java.io.FileWriter;
+    import java.io.IOException;
+    import java.io.OutputStreamWriter;
+    import java.io.Writer;
+    
+    public class wave_io 
+    {
+        public static void main(String[] args) 
+        {
+            int samples=0;
+            int validBits=0;
+            long sampleRate=0;
+            long numFrames=0; 
+            int numChannels=0;
+    
+            String inFilename = null;
+            String outFilename = null;
+            
+            if (args.length < 1) {
+                try { throw new WavFileException("At least one filename specified  (" + args.length + ")"); }
+                catch (WavFileException e1) { e1.printStackTrace(); }
+            }
+        
+            // Samples in dem Array readWavFile.sound
+            
+            inFilename=args[0];
+            
+            // Implementierung bei einem Eingabeparameter
+    
+             WavFile readWavFile = null;
+            try {
+                readWavFile = WavFile.read_wav(inFilename);
+                
+                // headerangaben
+                numFrames = readWavFile.getNumFrames(); 
+                numChannels = readWavFile.getNumChannels();
+                samples = (int)numFrames*numChannels;
+                validBits = readWavFile.getValidBits();
+                sampleRate = readWavFile.getSampleRate();
+            
+                // 2a Samples schreiben	
+                
+                for (int i=0; i < samples;i++) {				
+                    
+                    
+                }
+                
+                
+                if (args.length == 1) 
+                    System.exit(0);
+                
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (WavFileException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            }
+                
+            
+            // Implementierung bei Ein-und Ausgabeparameter
+            
+            outFilename=args[1];
+            try {
+    
+                // 2e Downsampling
+                for (int i=0; i < samples;i++) {
+                    
+                    // ********* ToDo *************** 	
+                    
+                }
+                
+                 // 3b Bitreduzierung
+                int reduced_bits = 1;
+                for (int i=0; i < samples;i++) {
+                
+                    // ********* ToDo *************** 	
+                    
+                }
+                
+                 // 3e Bitreduzierung Differenz
+                reduced_bits = 1;
+                for (int i=0; i < samples;i++) {
+                
+                    // ********* ToDo *************** 	
+                    
+                }
+                
+                WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, readWavFile.sound);
+            }			
+            catch (Exception e) {
+                System.err.println(e);
+                e.printStackTrace();
+            }
+        }
+    }
+</p>
 <br><p>Musikaufnahme</p>
 
 <audio controls><source src="./audio/Musik_Fetteng.wav" type="audio/wav"></audio>
@@ -43,5 +144,50 @@
 <p>Sprachdatei:</p>
 <p>D = 16000/5 = 3200 frames/s</p>
 
+
+
+<p>Nr.2 a)</p>
+
+<h4>Source-Code</h4>
+<p>  for (int i=0; i < samples;i++) {</p>	
+<p>System.out.println(readWavFile.sound[i]);</p>   			
+<p>}</p>
+<br><p>Musikaufnahme</p>
+<audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio>
+   
+
+<p>Frequenz ( Sinus_LO ) = ca. 3000</p>
+<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 5 Samples. Also 16000 / 5 = 3000</p>
+<img src="./images/sin_lo_screenshot.png" width="500px" height="500px">
+<br>
+
+<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
+<p>Frequenz ( Sinus_HI ) = ca. 7000</p>
+<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 16000 / 3 = 7000</p>
+<img src="./images/sin_hi_screenshot.png" width="500px" height="500px">
+
+
+<h4>Nr.2 c</h4>
+<p>Abtasttheorem: fa > 2x f0 max</p>
+<p>Mathematische Vorschrift, die besagt, dass bei der Analog/Digital-Wandlung die Abtastfrequenz mehr als doppelt so hoch sein muss wie die höchste Frequenz des zu digitalisierenden analogen Signals. Die Abtastfrequenz eines Audiosignals muss demnach größer als 40 kHz, die Abtastfrequenz eines Videosignals in HD größer als 60 MHz und in SD größer als 10 MHz sein.
+
+    Das Abtasttheorem wird auch Nyquist- oder Shannon-Theorem genannt.</p>
+
+<img src="./images/abtasttherorem.png" alt="" srcset=""> 
+<p>Im ersten Fall XA1(ω) wird mit einer Abtastfrequenz gearbeitet, die deutlich größer ist als das Abtasttheorem vorschreibt. Dieser Fall wird als Oversampling bezeichnet. Durch die hohe Abtastfrequenz werden das Spektrum im Basisband und die nächsthöheren Spektren deutlich voneinander getrennt, sodass mit einem Tiefpass-Filter mit vergleichsweise flachem Übergang zwischen Sperr- und Durchlass-Bereich gearbeitet werden kann.
+
+    Im zweiten Fall XA2(ω) wird das Abtasttheorem gerade eingehalten. Es zeigt sich aber, dass die Rekonstruktion nur mit einem idealen Tiefpass-Filter erfolgen kann, der technisch nicht realisiert werden kann. Dieser Fall entspricht dem theoretischen Grenzfall des Abtasttheorems.
+    
+    Im Fall einer zu kleinen Abtastfrequenz XA3(ω) überlagern sich die Spektren. Das Signal kann selbst mit einem idealen Tiefpass-Filter nicht fehlerfrei rekonstruiert werden. Es kommt zu Signalverzerrungen oder Aliasing.
+</p>   
+<br>
+
+<h4>Nr.2 d</h4>
+<p>Die Vorbehandlung nennt sich Aliasing</p>
+<p>Beim Alias-Effekt werden Frequenzen, die oberhalb der halben Samplingfrequenz (auch Nyquist-Frequenz genannt) liegen, als niedrigere Frequenzen interpretiert, da eine vollständige Rekonstruktion des Ausgangssignals nicht möglich ist.
+
+    Der Grund hierfür ist ein Verstoß gegen das Abtasttheorem, welches besagt, dass die Abtastrate mindestens doppelt so hoch sein muss, wie die höchste zu übertragende Frequenz.</p>
+
+<img src="./images/nach_dpwnsampling.png" width="500px" height="500px">
 </body>
 </html>
