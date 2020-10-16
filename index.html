@@ -213,9 +213,7 @@
 
 <h4>Nr.2 d</h4>
 <p>Die Vorbehandlung nennt sich Aliasing</p>
-<p>Beim Alias-Effekt werden Frequenzen, die oberhalb der halben Samplingfrequenz (auch Nyquist-Frequenz genannt) liegen, als niedrigere Frequenzen interpretiert, da eine vollständige Rekonstruktion des Ausgangssignals nicht möglich ist.
-
-    Der Grund hierfür ist ein Verstoß gegen das Abtasttheorem, welches besagt, dass die Abtastrate mindestens doppelt so hoch sein muss, wie die höchste zu übertragende Frequenz.</p>
+<p>Bei herkömmlichen Soundkarten wird Aliasing durch den Einsatz von Tiefpassfilter verhindert. Frequenzen, die >= fa / 2,  werden herausgefiltert, so wird das Abtasttheorem eingehalten</p>
 
 
 
@@ -225,8 +223,14 @@
 <img src="./images/downsampling.png" width="500px" height="250px">
 
 <h4>Nr.2 f</h4>
-<p></p>
+<p>HI:</p>
 
-<img src="./images/nach_downsampling.png" width="500px" height="250px">
+<img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
+<p>Frequenz: 2000Hz</p>
+<br>
+<p>LO:</p>
+
+<img src="./images/nach_downsampling_lo.png" width="500px" height="250px">
+<p>Frequenz: 6000Hz</p>
 </body>
 </html>
