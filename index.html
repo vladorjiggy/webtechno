@@ -157,15 +157,44 @@
    
 
 <p>Frequenz ( Sinus_LO ) = ca. 3000</p>
-<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 5 Samples. Also 16000 / 5 = 3000</p>
+<p>Die Formel f0 = 1/T0 dient zur Bestimmung der Frequenz einer Schwingung.
+    Die Frequenz der Schwingung "f0" und die Periodendauer "T0" der abgetastetend Schwingung stehen in Verhältnis zueinander.
+    f0=1/n*Ta : durch die Multiplikation der Anzahl der Abtastwerte pro Schwingung n und des Abstands zwischen zwei Abtastwerten Ta wird T0 ermittelt.
+     
+    Ta=1/fa ---------> f0=1/n*fa  (Ableitung, da fa Abtastfrequenz)
+    Teilt man die Anzahl der Abtastwerte durch die Anzahl der Schwingungen innerhalb einer Periode erhält man n.</p>
 <img src="./images/sin_lo_screenshot.png" width="500px" height="500px">
+<p>Sin_HI:</p>
+<p>13623</p>
+ <p>   16069</p>
+ <p>   9102</p>
+ <p>   -3196</p>
+ <p>   -13623</p>
+ <p>   -16069</p>
+  <p>  -9102</p>
+ <p>   3196</p>
+  <p>  13623</p>
 <br>
 
 <audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
-<p>Frequenz ( Sinus_HI ) = ca. 7000</p>
-<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 16000 / 3 = 7000</p>
+<p>Frequenz ( Sinus_HI ) =6 kHz</p>
+<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 1/(8 / 3) *16 = 6kHz</p>
 <img src="./images/sin_hi_screenshot.png" width="500px" height="500px">
+<p>Sin_LO:</p>
+<p>13623</p>
+ <p>   16069</p>
+ <p>   9102</p>
+ <p>   -3196</p>
+ <p>   -13623</p>
+ <p>   -16069</p>
+  <p>  -9102</p>
+ <p>   3196</p>
+  <p>  13623</p>
+<br>
 
+<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
+<p>Frequenz ( Sinus_LO ) =3 kHz</p>
+<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 1/(16 / 3) *16 = 3kHz</p>
 
 <h4>Nr.2 c</h4>
 <p>Abtasttheorem: fa > 2x f0 max</p>
@@ -188,6 +217,16 @@
 
     Der Grund hierfür ist ein Verstoß gegen das Abtasttheorem, welches besagt, dass die Abtastrate mindestens doppelt so hoch sein muss, wie die höchste zu übertragende Frequenz.</p>
 
-<img src="./images/nach_dpwnsampling.png" width="500px" height="500px">
+
+
+<h4>Nr.2 e</h4>
+<p></p>
+
+<img src="./images/downsampling.png" width="500px" height="250px">
+
+<h4>Nr.2 f</h4>
+<p></p>
+
+<img src="./images/nach_downsampling.png" width="500px" height="250px">
 </body>
 </html>
