@@ -12,109 +12,14 @@
 <br>
 <p>Nr.1 a)</p>
 
-<p>import java.io.BufferedWriter;
-    import java.io.File;
-    import java.io.FileOutputStream;
-    import java.io.FileWriter;
-    import java.io.IOException;
-    import java.io.OutputStreamWriter;
-    import java.io.Writer;
-    
-    public class wave_io 
-    {
-        public static void main(String[] args) 
-        {
-            int samples=0;
-            int validBits=0;
-            long sampleRate=0;
-            long numFrames=0; 
-            int numChannels=0;
-    
-            String inFilename = null;
-            String outFilename = null;
-            
-            if (args.length < 1) {
-                try { throw new WavFileException("At least one filename specified  (" + args.length + ")"); }
-                catch (WavFileException e1) { e1.printStackTrace(); }
-            }
-        
-            // Samples in dem Array readWavFile.sound
-            
-            inFilename=args[0];
-            
-            // Implementierung bei einem Eingabeparameter
-    
-             WavFile readWavFile = null;
-            try {
-                readWavFile = WavFile.read_wav(inFilename);
-                
-                // headerangaben
-                numFrames = readWavFile.getNumFrames(); 
-                numChannels = readWavFile.getNumChannels();
-                samples = (int)numFrames*numChannels;
-                validBits = readWavFile.getValidBits();
-                sampleRate = readWavFile.getSampleRate();
-            
-                // 2a Samples schreiben	
-                
-                for (int i=0; i < samples;i++) {				
-                    
-                    
-                }
-                
-                
-                if (args.length == 1) 
-                    System.exit(0);
-                
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (WavFileException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
-                
-            
-            // Implementierung bei Ein-und Ausgabeparameter
-            
-            outFilename=args[1];
-            try {
-    
-                // 2e Downsampling
-                for (int i=0; i < samples;i++) {
-                    
-                    // ********* ToDo *************** 	
-                    
-                }
-                
-                 // 3b Bitreduzierung
-                int reduced_bits = 1;
-                for (int i=0; i < samples;i++) {
-                
-                    // ********* ToDo *************** 	
-                    
-                }
-                
-                 // 3e Bitreduzierung Differenz
-                reduced_bits = 1;
-                for (int i=0; i < samples;i++) {
-                
-                    // ********* ToDo *************** 	
-                    
-                }
-                
-                WavFile.write_wav(outFilename, numChannels, numFrames, validBits, sampleRate, readWavFile.sound);
-            }			
-            catch (Exception e) {
-                System.err.println(e);
-                e.printStackTrace();
-            }
-        }
-    }
-</p>
+<p>for (int i=0; i < samples;i++) {</p>			
+				
+   <p> System.out.println(readWavFile.sound[i]);</p>
+<p>}</p>
 <br><p>Musikaufnahme</p>
 
 <audio controls><source src="./audio/Musik_Fetteng.wav" type="audio/wav"></audio>
+    <br><p>Sprachaufnahme</p>
 <audio controls><source src="./audio/Sprache_Fettang.wav" type="audio/wav"></audio>
 <p>Nr.1 b)</p>
 <br>
@@ -146,13 +51,13 @@
 
 
 
-<p>Nr.2 a)</p>
+<strong>Nr.2 a)</strong>
 
 <h4>Source-Code</h4>
 <p>  for (int i=0; i < samples;i++) {</p>	
 <p>System.out.println(readWavFile.sound[i]);</p>   			
 <p>}</p>
-<br><p>Musikaufnahme</p>
+<br><p>sine_hi (Original)</p>
 <audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio>
    
 
@@ -163,7 +68,7 @@
      
     Ta=1/fa ---------> f0=1/n*fa  (Ableitung, da fa Abtastfrequenz)
     Teilt man die Anzahl der Abtastwerte durch die Anzahl der Schwingungen innerhalb einer Periode erhält man n.</p>
-<img src="./images/sin_lo_screenshot.png" width="500px" height="500px">
+<img src="./images/sin_hi_screenshot.png" width="500px" height="500px">
 <p>Sin_HI:</p>
 <p>13623</p>
  <p>   16069</p>
@@ -179,7 +84,7 @@
 <audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
 <p>Frequenz ( Sinus_HI ) =6 kHz</p>
 <p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 1/(8 / 3) *16 = 6kHz</p>
-<img src="./images/sin_hi_screenshot.png" width="500px" height="500px">
+<img src="./images/sin_lo_screenshot.png" width="500px" height="500px">
 <p>Sin_LO:</p>
 <p>13623</p>
  <p>   16069</p>
@@ -203,12 +108,7 @@
     Das Abtasttheorem wird auch Nyquist- oder Shannon-Theorem genannt.</p>
 
 <img src="./images/abtasttherorem.png" alt="" srcset=""> 
-<p>Im ersten Fall XA1(ω) wird mit einer Abtastfrequenz gearbeitet, die deutlich größer ist als das Abtasttheorem vorschreibt. Dieser Fall wird als Oversampling bezeichnet. Durch die hohe Abtastfrequenz werden das Spektrum im Basisband und die nächsthöheren Spektren deutlich voneinander getrennt, sodass mit einem Tiefpass-Filter mit vergleichsweise flachem Übergang zwischen Sperr- und Durchlass-Bereich gearbeitet werden kann.
-
-    Im zweiten Fall XA2(ω) wird das Abtasttheorem gerade eingehalten. Es zeigt sich aber, dass die Rekonstruktion nur mit einem idealen Tiefpass-Filter erfolgen kann, der technisch nicht realisiert werden kann. Dieser Fall entspricht dem theoretischen Grenzfall des Abtasttheorems.
-    
-    Im Fall einer zu kleinen Abtastfrequenz XA3(ω) überlagern sich die Spektren. Das Signal kann selbst mit einem idealen Tiefpass-Filter nicht fehlerfrei rekonstruiert werden. Es kommt zu Signalverzerrungen oder Aliasing.
-</p>   
+  
 <br>
 
 <h4>Nr.2 d</h4>
@@ -218,26 +118,111 @@
 
 
 <h4>Nr.2 e</h4>
-<p></p>
 
-<img src="./images/downsampling.png" width="500px" height="250px">
+<p>Original (LO)</p>
+<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
+
+
 
 <h4>Nr.2 f</h4>
-<p>HI:</p>
 
-<img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
-<p>Frequenz: 2000Hz</p>
 <br>
 <p>LO:</p>
 
-<<<<<<< HEAD
+<p>nach Downsampling (LO)</p>
+<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
 <img src="./images/nach_downsampling_lo.png" width="500px" height="250px">
 <p>Frequenz: 6000Hz</p>
-=======
-<img src="./images/nach_downsampling.png" width="500px" height="250px">
+
+
+<p>Original (HI)</p>
+<audio controls><source src="./audio/sine_hi05.wav" type="audio/wav"></audio>
+
+
+
+<p>HI:</p>
+<p>nach Downsampling (HI)</p>
+<audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio>
+<img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
+<p>Frequenz: 2000Hz</p>
+
     
     <h4>Nr.3 a</h4>
-    <p></p>
->>>>>>> 682b1c07753fa251aa254c0d0cdec6861ede7b40
+    <p>Bei 16 bit Auflösung ist die höchstmögliche Anzahl der darstellbaren Amplitudenwerte 216=65536 und bei 8 bit Auflösung sind es 28=256.</p>
+
+    <h4>Nr.3 b</h4>
+    <p>for (int i=0; i < samples;i++) {</p>
+			
+        <p>readWavFile.sound[i] = (short) ((int) (readWavFile.sound[i] / Math.pow(2, reduced_bits)) * Math.pow(2, reduced_bits));</p>
+        
+    <p>}</p>
+    <h5>Sprache:</h5>
+    <table>
+        <tr>
+            <td style="width: 500px;"><audio controls><source src="./audio/sprache_14.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
+            <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
+            <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
+        </tr>
+        <a href="./images/sprache_original.png"><img src="./images/sprache_original.png" width="500px" height="250px"><a>
+        <a href="./images/sprache_4bit_reduziert.png"><img src="./images/sprache_4bit_reduziert.png" width="500px" height="250px"></a>
+        <a href="./images/sprache_12bit_reduziert.png"><img src="./images/sprache_12bit_reduziert.png" width="500px" height="250px"></a>
+        
+    </table>
+    <ol>
+        <p>Die obige Grafik zeigt die Bitreduktion der monoton Sprachaufnahme im Originalzustand (links),
+            der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend) und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)
+        Wie in der Grafik zu sehen ist, sind die Unterschiede azwischen der Orginalaufnahme und der 4 Bit reduzierten Aufnahme maginal. 
+            Große unterschiede sind jedoch auf der 12 Bit reduzierten Aufnahme zu erkennen. 
+        Bei dieser ist die Stimme kaum noch zu verstehen. Auch im Spektrogramm ist dies deutlich zu erkennen, da die entweder sehr starke Ausschläge auftreten, 
+            oder im Orginal vorhandene Frequenzen jetzt nicht mehr vorliegen. 
+        </p>
+    </ol>
+
+    <h5>Musik:</h5>
+    <table>
+        <tr>
+            <td style="width: 500px;"><audio controls><source src="./audio/Musik_Fetteng.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
+            <td style="width: 500px;"><audio controls><source src="./audio/output_musik_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
+            <td style="width: 500px;"><audio controls><source src="./audio/output_musik_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
+        </tr>
+        <a href="./images/musik_original.png"><img src="./images/musik_original.png" width="500px" height="250px"></a>
+        <a href="./images/musik_4bit_reduziert.png"><img src="./images/musik_4bit_reduziert.png" width="500px" height="250px"></a>
+        <a href="./images/musik_12bit_reduziert.png"><img src="./images/musik_12bit_reduziert.png" width="500px" height="250px"></a> 
+        
+        
+    </table>
+    <ol>
+        <li>Die obige Grafik zeigt die Bitreduktion der Musikaufnahme im Originalzustand (links), der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend)
+            und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)</li>
+        <li>Im Gegensatz zur Sprachaufnahme, ist selbst bei 12 Bit Reduktion (also 4 Bit verbleibend) die Musik deutlich zu hören, auch wenn eine sehr starke Störung wahrnehmbar ist. </li> 
+        <li>Die Unterschiede hinsichtlich der Auswirkungen der Bitreduktion auf Musik und Sprache werden damit Begründet, dass bei der Musik eine durchgehende Geräuschkulisse geschaffen 
+            wird und somit ein dichteres Spektrum hinsichtlich Frequenz und Lautstärke erreicht wird. Der durch die Bitreduktion entstehende Fehler wird somit zwar hörbar, aber es stehen 
+            noch genug Informationen zur Verfügung. Aufgrund der starken Schwankungen bei der Sprache und der fehlenden Durchgängigkeit wirkt sich ein auftretender Fehler somit stärker aus.
+        </li>
+    </ol>
+
+    <h3>Aufgabe 3d)</h3>
+       
+        
+        <p>
+            Besonders störend ist das Rauschen, welches entsteht. Es wirkt zunächst im Hintergrund und verlagert sich "gefühlt" mit zunehmender Reduktion immer weiter in den Vordergrund, 
+            bis zuletzte die Musik / Sprache kaum bis gar nicht mehr zu verstehen ist. 
+        </p>
+
+
+    <h3>Aufgabe 3 e)</h3>
+    <p> short[] new_wave = new short[samples];</p>
+       <p> for(int i=0;i < samples;i++) </p>
+       <p>{</p>
+            <p>new_wave [i]=readWavFile.sound[i]; </p> 
+                <p>readWavFile.sound[i]/=16384; </p>           
+                    <p>readWavFile.sound[i]*=16384;  </p>          
+                        <p>readWavFile.sound[i]-= new_wave[i];</p>      
+                            <p> readWavFile.sound[i]*=2;    </p>                  
+        <p>}</p>
+        <p>
+            Besonders störend ist das Rauschen, welches entsteht. Es wirkt zunächst im Hintergrund und verlagert sich "gefühlt" mit zunehmender Reduktion immer weiter in den Vordergrund, 
+            bis zuletzte die Musik / Sprache kaum bis gar nicht mehr zu verstehen ist. 
+        </p>
 </body>
 </html>
