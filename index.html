@@ -12,11 +12,14 @@
 <h2>Uebung 1</h2>
 <br>
 <p>Nr.1 a)</p>
-
-<p>for (int i=0; i < samples;i++) {</p>			
+<pre>for (int i=0; i < samples;i++) {
+    System.out.println(readWavFile.sound[i]);
+}
+</pre>
+<p></p>			
 				
-   <p> System.out.println(readWavFile.sound[i]);</p>
-<p>}</p>
+   <p> </p>
+<p></p>
 <br><p>Musikaufnahme</p>
 
 <audio controls><source src="./audio/musik.wav" type="audio/wav"></audio>
@@ -24,52 +27,40 @@
 <audio controls><source src="./audio/sprache.wav" type="audio/wav"></audio>
 <p>Nr.1 b)</p>
 <br>
-<p>Bei CDs wird eine Abtastrate von 44,1 kHz benutzt. Diese ist ausreichend, um Audiosignale mit Frequenzen bis 22 kHz zu erfassen. 
-    Bei DVDs sind Abtastraten bis 96 und 192 kHz möglich. Durch die höheren Abtastraten können die notwendigen analogen Tiefpassfilter für das Antialiasing mit einem geringeren Gütefaktor arbeiten, was eine geringere Steilheit und damit weniger Verzerrungen bewirkt. Auch kann die Grenzfrequenz nach oben geschoben werden, sodass Audiosignale mit entsprechend höheren Frequenzen sauber übertragen werden. </p>
+<p>Je häufiger abgetastet wird, desto detaillierter wird ein Klang abgebildet. Bei der Musik ist die Anzahl der Schwingungen im gleichen Zeitraum viel größer als bei der Sprache. Um eine genaue Wiedergabe der Musik zu gewährleisten ist es daher notwendig eine hohe Abtastarte zu verwenden.</p>
 <br>
 
 <p>c)</p>
 <br>
 <h4>Channels:</h4>
-<p>Wieviele Kanäle nutzt das Audiosignal. 1 bei mono, 2 bei Stereo, 5 bei Dolby Surround</p>
+<p>gibt die Anzahl der Kanäle an (Mono/Stereo)</p>
 <h4>Frames: </h4>
-<p>Ein Frame besteht aus 588 Stereo-Samples. Eine Sekunde Audio besteht aus 75 Frames. Dies ergibt sich aus der Berechnung 75 x 588 = 44.100. Da die Samplerate des CD-Formats 44.100 Hz (Samples pro Sekunde) beträgt, entspricht dieser Wert einer Sekunde Audio. </p>
+<p> gibt die Anzahl aller ausgeführten Abtastungen an </p>
 <h4>Sample Rate: </h4>
-<p>Die Abtastrate oder Abtastfrequenz, auch Samplingrate, Samplerate oder Samplingfrequenz, ist in der Signalverarbeitung die Häufigkeit, mit der ein Analogsignal (auch zeitkontinuierliches Signal genannt) in einer vorgegebenen Zeit abgetastet (das heißt, gemessen und in ein zeitdiskretes Signal umgewandelt) wird. </p>
+<p>die Häufigkeit der Abtastungen in der Sekunde </p>
 <h4>Valid Bits ( Bittiefe ) :</h4>
-<p>Die Samplingtiefe, auch Bittiefe genannt, gibt die Anzahl der Bits an, die bei der Quantisierung eines analogen Signals pro Abtastwert (=Sample) verwendet werden. Sie bestimmt, in wie vielen Abstufungen die Amplitude repräsentiert werden kann. Die Samplingtiefe ist neben der Samplingrate der zweite Parameter, durch den der Digitalisierungsvorgang beschrieben wird. </p>
-<h4>Bytes per Sample (Bitrate):</h4>
-<p>Die Bitrate ist eine Datenübertragungsrate und bezeichnet die Ausgabemenge von Informationseinheiten bei digitalen Multimediaformaten im Verhältnis einer Datenmenge zu einer Zeit, typischerweise gemessen in Bit pro Sekunde, abgekürzt als Bit/s oder bps. Mit fortschreitender Technik sind je nach Themengebiet immer mehr Vielfache üblich, angefangen bei kbit/s oder kbps (1.000 Bit/s), weiter mit Mbit/s (1.000.000 Bit/s) und Gbit/s (1.000.000.000 Bit/s). </p>
+<p> gibt die Anzahl der Bits an, die pro Sekunde abgetastet werden </p>
+<h4>Bytes per Sample:</h4>
+<p> gibt die nötige Datenrate pro Abtastung an</p>
 
 <p>d)</p>
 <br>
 <p>Musikdatei:</p>
-<p>D = 44100/5 = 8820 frames/s</p>
+<p>16bit * 2 * 44,1kHz = 1.441,2 kBit/s</p>
 
 <br>
 <p>Sprachdatei:</p>
-<p>D = 16000/5 = 3200 frames/s</p>
-
-
+<p>16bit * 1 * 8kHz = 128kBit/s</p>
 
 <strong>Nr.2 a)</strong>
 
 <h4>Source-Code</h4>
-<p>  for (int i=0; i < samples;i++) {</p>	
-<p>System.out.println(readWavFile.sound[i]);</p>   			
-<p>}</p>
-<br><p>sine_hi (Original)</p>
-<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
-   
 
-<p>Frequenz ( Sinus_LO ) = ca. 3000</p>
-<p>Die Formel f0 = 1/T0 dient zur Bestimmung der Frequenz einer Schwingung.
-    Die Frequenz der Schwingung "f0" und die Periodendauer "T0" der abgetastetend Schwingung stehen in Verhältnis zueinander.
-    f0=1/n*Ta : durch die Multiplikation der Anzahl der Abtastwerte pro Schwingung n und des Abstands zwischen zwei Abtastwerten Ta wird T0 ermittelt.
-     
-    Ta=1/fa ---------> f0=1/n*fa  (Ableitung, da fa Abtastfrequenz)
-    Teilt man die Anzahl der Abtastwerte durch die Anzahl der Schwingungen innerhalb einer Periode erhält man n.</p>
-<img src="./images/sin_hi_screenshot.png" width="500px" height="500px">
+<pre>
+    for (int i=0; i < samples;i++) {
+        System.out.println(readWavFile.sound[i]);
+    }
+</pre>
 <p>Sin_HI:</p>
 <p>13623</p>
  <p>   16069</p>
@@ -81,11 +72,8 @@
  <p>   3196</p>
   <p>  13623</p>
 <br>
+<p>Frequenz ( Sinus_HI ) = Abtastfrequenz (16kHz) / ~2 Abtastperioden = ~8kHz</p>
 
-<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
-<p>Frequenz ( Sinus_HI ) =6 kHz</p>
-<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 1/(8 / 3) *16 = 6kHz</p>
-<img src="./images/sin_lo_screenshot.png" width="500px" height="500px">
 <p>Sin_LO:</p>
 <p>13623</p>
  <p>   16069</p>
@@ -96,11 +84,26 @@
   <p>  -9102</p>
  <p>   3196</p>
   <p>  13623</p>
+  <p>   16069</p>
+  
 <br>
 
-<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
-<p>Frequenz ( Sinus_LO ) =3 kHz</p>
-<p>Begründung: Samplerate beträgt 16000 kHz. Diese teilt man durch die Anzahl der Samples in einer Amplitude. In diesem Fall wären das 3 Samples. Also 1/(16 / 3) *16 = 3kHz</p>
+<p>Frequenz ( Sinus_HI ) = Abtastfrequenz (16kHz) / ~5 Abtastperioden = ~3kHz</p>
+<br>
+<br><p>sine_hi (Original)</p>
+<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
+
+<br>
+ <strong>Nr.2 b)</strong>
+ <br>
+ <a href="./images/sin_hi_screenshot.png"><img src="./images/sin_hi_screenshot.png" width="500px"><a>
+
+<br>
+
+
+<a href="./images/sin_hi_screenshot.png"><img src="./images/sin_lo_screenshot.png" width="500px"></a>
+
+
 
 <h4>Nr.2 c</h4>
 <p>Abtasttheorem: fa > 2x f0 max</p>
@@ -113,27 +116,34 @@
 <br>
 
 <h4>Nr.2 d</h4>
-<p>Die Vorbehandlung nennt sich Aliasing</p>
-<p>Bei herkömmlichen Soundkarten wird Aliasing durch den Einsatz von Tiefpassfilter verhindert. Frequenzen, die >= fa / 2,  werden herausgefiltert, so wird das Abtasttheorem eingehalten</p>
+<p>Die Soundkarte sorgt mithilfe eines Tiefpassfilters für das Einhalten des Abtasttheorems, da es alle Frequenzen die >= fa / 2 sind herausfiltert. Dadurch wird Aliasing verhindert.</p>
 
 
 
 <h4>Nr.2 e</h4>
 
-<p>Original (LO)</p>
-<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
+<pre>
+    for (int i=0; i < samples/2;i++) {		
+        readWavFile.sound[i] = readWavFile.sound[i*2];
+    }
+    
+    sampleRate = sampleRate/2;
+    numFrames = numFrames /2;	
+</pre>
+
 
 
 
 <h4>Nr.2 f</h4>
-
+<p>Original (LO)</p>
+<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
 <br>
 <p>LO:</p>
 
 <p>nach Downsampling (LO)</p>
 <audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
 <img src="./images/nach_downsampling_lo.png" width="500px" height="250px">
-<p>Frequenz: 6000Hz</p>
+<p>Frequenz: 3000Hz</p>
 
 
 <p>Original (HI)</p>
@@ -145,18 +155,24 @@
 <p>nach Downsampling (HI)</p>
 <audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio>
 <img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
-<p>Frequenz: 2000Hz</p>
+<p>Frequenz: 1000Hz</p>
 
+<br>
+<strong><p>Wenn man geeignet bandbegrenzen würde, wären bei der sine_hi03.wav keine Veränderungen aufgetreten.
+    Es kam zur Verfälschung bei der Audiospur sine_hi00.wav, dadurch dass es keine geeignete Bandbegrenzung gibt und das Abtasttheorem nicht eingehalten werden kann.
+    Bei sine_lo03.wav kam es zu keiner Verfälschung, weil das Abtasttheorem nach Verringerung der Abtastfrequenz trotzdem eingehalten wurde.</p></strong>
     
     <h4>Nr.3 a</h4>
     <p>Bei 16 bit Auflösung ist die höchstmögliche Anzahl der darstellbaren Amplitudenwerte 216=65536 und bei 8 bit Auflösung sind es 28=256.</p>
 
     <h4>Nr.3 b</h4>
-    <p>for (int i=0; i < samples;i++) {</p>
-			
-        <p>readWavFile.sound[i] = (short) ((int) (readWavFile.sound[i] / Math.pow(2, reduced_bits)) * Math.pow(2, reduced_bits));</p>
-        
-    <p>}</p>
+    <pre>
+        int reduced_bits = 4;
+			for (int i=0; i < samples;i++) {				
+				readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
+				readWavFile.sound[i] *= Math.pow(2.0, reduced_bits);				
+			}
+    </pre>
     <h5>Sprache:</h5>
     <table>
         <tr>
@@ -164,9 +180,9 @@
             <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
             <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
         </tr>
-        <a href="./images/sprache_original.png"><img src="./images/sprache_original.png" width="500px" height="250px"><a>
-        <a href="./images/sprache_4bit_reduziert.png"><img src="./images/sprache_4bit_reduziert.png" width="500px" height="250px"></a>
-        <a href="./images/sprache_12bit_reduziert.png"><img src="./images/sprache_12bit_reduziert.png" width="500px" height="250px"></a>
+        <a href="./images/sprache_original.png"><img src="./images/sprache_original.png" width="500px"> </a>
+        <a href="./images/sprache_4bit_reduziert.png"><img src="./images/sprache_4bit_reduziert.png" width="500px"></a>
+        <a href="./images/sprache_12bit_reduziert.png"><img src="./images/sprache_12bit_reduziert.png" width="500px" ></a>
         
     </table>
     <ol>
@@ -212,15 +228,40 @@
 
 
     <h3>Aufgabe 3 e)</h3>
-    <p> short[] new_wave = new short[samples];</p>
-       <p> for(int i=0;i < samples;i++) </p>
-       <p>{</p>
-            <p>new_wave [i]=readWavFile.sound[i]; </p> 
-                <p>readWavFile.sound[i]/=16384; </p>           
-                    <p>readWavFile.sound[i]*=16384;  </p>          
-                        <p>readWavFile.sound[i]-= new_wave[i];</p>      
-                            <p> readWavFile.sound[i]*=2;    </p>                  
-        <p>}</p>
+    <pre>
+    reduced_bits = 1;
+    for (int i=0; i < samples;i++) {			
+        readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
+        readWavFile.sound[i] *= Math.pow(2.0, 16 - reduced_bits -1);				
+    }
+    </pre>
+
+    <strong>1-Bit Reduzierung ( Musikdatei )</strong>
+    <br>
+    <a href="./images/musik_1bit.png"><img src="./images/musik_1bit.png" width="500px"></a> 
+    <br>
+    <br>
+    <strong>8-Bit Reduzierung ( Musikdatei )</strong>
+    <br>
+    <a href="./images/musik_8bit.png"><img src="./images/musik_8bit.png" width="500px"></a> 
+    <br>
+    <br>
+    <br>
+    <strong>1-Bit Reduzierung ( Sprachdatei )</strong>
+    <br>
+    <a href="./images/sprache_1bit.png"><img src="./images/sprache_1bit.png" width="500px"></a> 
+    <br>
+    <br>
+    <strong>8-Bit Reduzierung ( Sprachdatei )</strong>
+    <br>
+    <a href="./images/sprache_8bit.png"><img src="./images/sprache_8bit.png" width="500px"></a> 
+    <br>
+    
+    <p>
+        Bei beiden Dateien führt eine 1-Bit Reduzierung zu durchgängigem Rauschen
+
+        Je höher die Bitzahl um die reduziert wird, desto schwächer ist das Rauschen
+    </p>
         
 </body>
 </html>
