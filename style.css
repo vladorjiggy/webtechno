@@ -1,0 +1,42 @@
+*{
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+header{
+    display: flex;
+    align-items: flex-end;
+    justify-content: start;
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+section{
+    border-bottom: 2px solid black;
+    padding: 20px;
+}
+article >div{
+    padding: 5px 0;
+}
+article >div > span{
+    margin-left: 5px;
+}
+.header_nav > ul{
+    list-style: none;
+}
+.header_nav > ul > li{
+    display: inline;
+    margin-right: 20px;
+}
+
+.header_nav > ul > li >a{
+    color: black;
+    text-decoration: none;
+    padding: 10px;
+    background-color: white;
+}
+
+#id_for_dash{
+    border-bottom: 1px dashed black
+}
+

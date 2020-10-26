@@ -1,267 +1,284 @@
 <html>
 <head>
 <title></title>
-
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<h1>Gruppe Fettang</h1>
-<p>Vladislav Fetisov</p>
-<p>Maik Boateng</p>
-
-<h2>Uebung 1</h2>
-<br>
-<p>Nr.1 a)</p>
-<pre>for (int i=0; i < samples;i++) {
-    System.out.println(readWavFile.sound[i]);
-}
-</pre>
-<p></p>			
-				
-   <p> </p>
-<p></p>
-<br><p>Musikaufnahme</p>
-
-<audio controls><source src="./audio/musik.wav" type="audio/wav"></audio>
-    <br><p>Sprachaufnahme</p>
-<audio controls><source src="./audio/sprache.wav" type="audio/wav"></audio>
-<p>Nr.1 b)</p>
-<br>
-<p>Je häufiger abgetastet wird, desto detaillierter wird ein Klang abgebildet. Bei der Musik ist die Anzahl der Schwingungen im gleichen Zeitraum viel größer als bei der Sprache. Um eine genaue Wiedergabe der Musik zu gewährleisten ist es daher notwendig eine hohe Abtastarte zu verwenden.</p>
-<br>
-
-<p>c)</p>
-<br>
-<h4>Channels:</h4>
-<p>gibt die Anzahl der Kanäle an (Mono/Stereo)</p>
-<h4>Frames: </h4>
-<p> gibt die Anzahl aller ausgeführten Abtastungen an </p>
-<h4>Sample Rate: </h4>
-<p>die Häufigkeit der Abtastungen in der Sekunde </p>
-<h4>Valid Bits ( Bittiefe ) :</h4>
-<p> gibt die Anzahl der Bits an, die pro Sekunde abgetastet werden </p>
-<h4>Bytes per Sample:</h4>
-<p> gibt die nötige Datenrate pro Abtastung an</p>
-
-<p>d)</p>
-<br>
-<p>Musikdatei:</p>
-<p>16bit * 2 * 44,1kHz = 1.441,2 kBit/s</p>
-
-<br>
-<p>Sprachdatei:</p>
-<p>16bit * 1 * 8kHz = 128kBit/s</p>
-
-<strong>Nr.2 a)</strong>
-
-<h4>Source-Code</h4>
-
-<pre>
-    for (int i=0; i < samples;i++) {
-        System.out.println(readWavFile.sound[i]);
-    }
-</pre>
-<p>Sin_HI:</p>
-<p>13623</p>
- <p>   16069</p>
- <p>   9102</p>
- <p>   -3196</p>
- <p>   -13623</p>
- <p>   -16069</p>
-  <p>  -9102</p>
- <p>   3196</p>
-  <p>  13623</p>
-<br>
-<p>Frequenz ( Sinus_HI ) = Abtastfrequenz (16kHz) / ~2 Abtastperioden = ~8kHz</p>
-
-<p>Sin_LO:</p>
-<p>13623</p>
- <p>   16069</p>
- <p>   9102</p>
- <p>   -3196</p>
- <p>   -13623</p>
- <p>   -16069</p>
-  <p>  -9102</p>
- <p>   3196</p>
-  <p>  13623</p>
-  <p>   16069</p>
-  
-<br>
-
-<p>Frequenz ( Sinus_HI ) = Abtastfrequenz (16kHz) / ~5 Abtastperioden = ~3kHz</p>
-<br>
-<br><p>sine_hi (Original)</p>
-<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
-
-<br>
- <strong>Nr.2 b)</strong>
- <br>
- <a href="./images/sin_hi_screenshot.png"><img src="./images/sin_hi_screenshot.png" width="500px"><a>
-
-<br>
 
 
-<a href="./images/sin_hi_screenshot.png"><img src="./images/sin_lo_screenshot.png" width="500px"></a>
-
-
-
-<h4>Nr.2 c</h4>
-<p>Abtasttheorem: fa > 2x f0 max</p>
-<p>Mathematische Vorschrift, die besagt, dass bei der Analog/Digital-Wandlung die Abtastfrequenz mehr als doppelt so hoch sein muss wie die höchste Frequenz des zu digitalisierenden analogen Signals. Die Abtastfrequenz eines Audiosignals muss demnach größer als 40 kHz, die Abtastfrequenz eines Videosignals in HD größer als 60 MHz und in SD größer als 10 MHz sein.
-
-    Das Abtasttheorem wird auch Nyquist- oder Shannon-Theorem genannt.</p>
-
-<img src="./images/abtasttherorem.png" alt="" srcset=""> 
-  
-<br>
-
-<h4>Nr.2 d</h4>
-<p>Die Soundkarte sorgt mithilfe eines Tiefpassfilters für das Einhalten des Abtasttheorems, da es alle Frequenzen die >= fa / 2 sind herausfiltert. Dadurch wird Aliasing verhindert.</p>
-
-
-
-<h4>Nr.2 e</h4>
-
-<pre>
-    for (int i=0; i < samples/2;i++) {		
-        readWavFile.sound[i] = readWavFile.sound[i*2];
-    }
+<header>
     
-    sampleRate = sampleRate/2;
-    numFrames = numFrames /2;	
-</pre>
-
-
-
-
-<h4>Nr.2 f</h4>
-<p>Original (LO)</p>
-<audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
-<br>
-<p>LO:</p>
-
-<p>nach Downsampling (LO)</p>
-<audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio>
-<img src="./images/nach_downsampling_lo.png" width="500px" height="250px">
-<p>Frequenz: 3000Hz</p>
-
-
-<p>Original (HI)</p>
-<audio controls><source src="./audio/sine_hi05.wav" type="audio/wav"></audio>
-
-
-
-<p>HI:</p>
-<p>nach Downsampling (HI)</p>
-<audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio>
-<img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
-<p>Frequenz: 1000Hz</p>
-
-<br>
-<strong><p>Wenn man geeignet bandbegrenzen würde, wären bei der sine_hi03.wav keine Veränderungen aufgetreten.
-    Es kam zur Verfälschung bei der Audiospur sine_hi00.wav, dadurch dass es keine geeignete Bandbegrenzung gibt und das Abtasttheorem nicht eingehalten werden kann.
-    Bei sine_lo03.wav kam es zu keiner Verfälschung, weil das Abtasttheorem nach Verringerung der Abtastfrequenz trotzdem eingehalten wurde.</p></strong>
+    <div>
+        <h1>Gruppe Fettang</h1>
+        <p>Vladislav Fetisov</p>
+        <p>Maik Boateng</p>
+    </div>
+    <nav class="header_nav">
+        <ul>
+            <li><a href="/uebung1">Übung 1</a></li>
+            <li><a href="/uebung2">Übung 2</a></li>
+            <li><a href="/uebung3">Übung 3</a></li>
+            <li><a href="/uebung4">Übung 4</a></li>
+            <li><a href="/uebung5">Übung 5</a></li>
+            <li><a href="/uebung6">Übung 6</a></li>
+        </ul>
+    </nav>
     
-    <h4>Nr.3 a</h4>
-    <p>Bei 16 bit Auflösung ist die höchstmögliche Anzahl der darstellbaren Amplitudenwerte 216=65536 und bei 8 bit Auflösung sind es 28=256.</p>
-
-    <h4>Nr.3 b</h4>
-    <pre>
-        int reduced_bits = 4;
-			for (int i=0; i < samples;i++) {				
-				readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
-				readWavFile.sound[i] *= Math.pow(2.0, reduced_bits);				
-			}
-    </pre>
-    <h5>Sprache:</h5>
-    <table>
-        <tr>
-            <td style="width: 500px;"><audio controls><source src="./audio/sprache.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
-            <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
-            <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
-        </tr>
-        <a href="./images/sprache_original.png"><img src="./images/sprache_original.png" width="500px"> </a>
-        <a href="./images/sprache_4bit_reduziert.png"><img src="./images/sprache_4bit_reduziert.png" width="500px"></a>
-        <a href="./images/sprache_12bit_reduziert.png"><img src="./images/sprache_12bit_reduziert.png" width="500px" ></a>
-        
-    </table>
-    <ol>
-        <p>Die obige Grafik zeigt die Bitreduktion der monoton Sprachaufnahme im Originalzustand (links),
-            der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend) und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)
-        Wie in der Grafik zu sehen ist, sind die Unterschiede azwischen der Orginalaufnahme und der 4 Bit reduzierten Aufnahme maginal. 
-            Große unterschiede sind jedoch auf der 12 Bit reduzierten Aufnahme zu erkennen. 
-        Bei dieser ist die Stimme kaum noch zu verstehen. Auch im Spektrogramm ist dies deutlich zu erkennen, da die entweder sehr starke Ausschläge auftreten, 
-            oder im Orginal vorhandene Frequenzen jetzt nicht mehr vorliegen. 
-        </p>
-    </ol>
-
-    <h5>Musik:</h5>
-    <table>
-        <tr>
-            <td style="width: 500px;"><audio controls><source src="./audio/musik.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
-            <td style="width: 500px;"><audio controls><source src="./audio/output_musik_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
-            <td style="width: 500px;"><audio controls><source src="./audio/output_musik_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
-        </tr>
-        <a href="./images/musik_original.png"><img src="./images/musik_original.png" width="500px" height="250px"></a>
-        <a href="./images/musik_4bit_reduziert.png"><img src="./images/musik_4bit_reduziert.png" width="500px" height="250px"></a>
-        <a href="./images/musik_12bit_reduziert.png"><img src="./images/musik_12bit_reduziert.png" width="500px" height="250px"></a> 
-        
-        
-    </table>
-    <ol>
-        <li>Die obige Grafik zeigt die Bitreduktion der Musikaufnahme im Originalzustand (links), der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend)
-            und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)</li>
-        <li>Im Gegensatz zur Sprachaufnahme, ist selbst bei 12 Bit Reduktion (also 4 Bit verbleibend) die Musik deutlich zu hören, auch wenn eine sehr starke Störung wahrnehmbar ist. </li> 
-        <li>Die Unterschiede hinsichtlich der Auswirkungen der Bitreduktion auf Musik und Sprache werden damit Begründet, dass bei der Musik eine durchgehende Geräuschkulisse geschaffen 
-            wird und somit ein dichteres Spektrum hinsichtlich Frequenz und Lautstärke erreicht wird. Der durch die Bitreduktion entstehende Fehler wird somit zwar hörbar, aber es stehen 
-            noch genug Informationen zur Verfügung. Aufgrund der starken Schwankungen bei der Sprache und der fehlenden Durchgängigkeit wirkt sich ein auftretender Fehler somit stärker aus.
-        </li>
-    </ol>
-
-    <h3>Aufgabe 3d)</h3>
-       
-        
-        <p>
-            Besonders störend ist das Rauschen, welches entsteht. Es wirkt zunächst im Hintergrund und verlagert sich "gefühlt" mit zunehmender Reduktion immer weiter in den Vordergrund, 
-            bis zuletzte die Musik / Sprache kaum bis gar nicht mehr zu verstehen ist. 
-        </p>
-
-
-    <h3>Aufgabe 3 e)</h3>
-    <pre>
-    reduced_bits = 1;
-    for (int i=0; i < samples;i++) {			
-        readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
-        readWavFile.sound[i] *= Math.pow(2.0, 16 - reduced_bits -1);				
-    }
-    </pre>
-
-    <strong>1-Bit Reduzierung ( Musikdatei )</strong>
-    <br>
-    <a href="./images/musik_1bit.png"><img src="./images/musik_1bit.png" width="500px"></a> 
-    <br>
-    <br>
-    <strong>8-Bit Reduzierung ( Musikdatei )</strong>
-    <br>
-    <a href="./images/musik_8bit.png"><img src="./images/musik_8bit.png" width="500px"></a> 
-    <br>
-    <br>
-    <br>
-    <strong>1-Bit Reduzierung ( Sprachdatei )</strong>
-    <br>
-    <a href="./images/sprache_1bit.png"><img src="./images/sprache_1bit.png" width="500px"></a> 
-    <br>
-    <br>
-    <strong>8-Bit Reduzierung ( Sprachdatei )</strong>
-    <br>
-    <a href="./images/sprache_8bit.png"><img src="./images/sprache_8bit.png" width="500px"></a> 
-    <br>
     
-    <p>
-        Bei beiden Dateien führt eine 1-Bit Reduzierung zu durchgängigem Rauschen
+</header>
+<main>
+    <section id="aufgabe1">
+        <article id="aufgabe1_a">
+            <h2>Nr.1a)</h2>
+            	
+            
+            <h3>Musikaufnahme</h3>
+            
+            <audio controls><source src="./audio/musik.wav" type="audio/wav"></audio>
+            <h3>Sprachaufnahme</h3>
+            <audio controls><source src="./audio/sprache.wav" type="audio/wav"></audio>
+        </article>
 
-        Je höher die Bitzahl um die reduziert wird, desto schwächer ist das Rauschen
-    </p>
+        <article id="aufgabe1_b">
+            <h2>Nr.1b)</h2>
+            <p>Je häufiger abgetastet wird, desto detaillierter wird ein Klang abgebildet. Bei der Musik ist die Anzahl der Schwingungen im gleichen Zeitraum viel größer als bei der Sprache. Um eine genaue Wiedergabe der Musik zu gewährleisten ist es daher notwendig eine hohe Abtastarte zu verwenden.</p>
+        </article>
+        <article id="aufgabe1_c">
+            <h2>Nr.1c</h2>
+            <div><strong>Channels:</strong><span>gibt die Anzahl der Kanäle an (Mono/Stereo)</span></div>
+            <div><strong>Sample Rate: </strong><span>die Häufigkeit der Abtastungen in der Sekunde </span></div>
+            <div><strong>Frames: </strong><span>gibt die Anzahl aller ausgeführten Abtastungen an</span></div>
+            <div><strong>Valid Bits:</strong><span>gibt die Anzahl der Bits an, die pro Sekunde abgetastet werden</span></div>
+            <div><strong>Bytes per Sample:</strong><span>gibt die nötige Datenrate pro Abtastung an</span></div>            
+        </article>
+        <article id="aufgabe1_d">
+            <h2>Nr.1d)</h2>
+            <div><strong>Musikdatei:</strong><span>16bit * 2 * 44,1kHz = 1.441,2 kBit/s</span></div>
+            <div><strong>Sprachdatei:</strong><span>16bit * 1 * 8kHz = 128kBit/s</span></div>
+        </article>
+    </section>
+    <section id="aufgabe2">
+        <article id="aufgabe2_a">
+            <h2>Nr.2a</h2>
+            <h3>Sourcecode</h3>
+            <pre>
+                for (int i=0; i < samples;i++) {
+                    System.out.println(readWavFile.sound[i]);
+                }
+            </pre>
+            <h3>Sin_HI:</h3>
+            <ul>
+                <li>13623</li>
+                <li>16069</li>
+                <li>9102</li>
+                <li>-3196</li>
+                <li>-13623</li>
+                <li>-16069</li>
+                <li>-9102</li>
+                <li>3196</li>
+                <li>13623</li>                
+            </ul>
+            <div><strong>Frequenz ( Sinus_HI ) =</strong><span>Abtastfrequenz (16kHz) / ~2 Abtastperioden = <strong>~8kHz</strong></span></div>   
+            <h3>Sin_LO:</h3>
+            <ul>
+                <li>13623</li>
+                <li>16069</li>
+                <li>9102</li>
+                <li>-3196</li>
+                <li>-13623</li>
+                <li>-9102</li>
+                <li>3196</li>
+                <li>13623</li>
+                <li>16069</li>                
+            </ul>
+            <div><strong>Frequenz ( Sinus_LO ) =</strong><span>Abtastfrequenz (16kHz) / ~5 Abtastperioden = <strong>~3kHz</strong></span></div> 
+            <p> </p>
+        </article>
+        <article id="aufgabe2_b">
+            <h2>Nr.2b</h2>
+            <a href="./images/sin_hi_screenshot.png"><img src="./images/sin_hi_screenshot.png" width="500px"><a></a>
+            <a href="./images/sin_hi_screenshot.png"><img src="./images/sin_lo_screenshot.png" width="500px"></a>
+        </article>
+        <article id="aufgabe2_c">
+            <h2>Nr.2 c</h2>
+            <p>Abtasttheorem: fa > 2x f0 max</p>
+            <p>Mathematische Vorschrift, die besagt, dass bei der Analog/Digital-Wandlung die Abtastfrequenz mehr als doppelt so hoch sein muss wie die höchste Frequenz des zu digitalisierenden analogen Signals. Die Abtastfrequenz eines Audiosignals muss demnach größer als 40 kHz, die Abtastfrequenz eines Videosignals in HD größer als 60 MHz und in SD größer als 10 MHz sein.
+
+                Das Abtasttheorem wird auch Nyquist- oder Shannon-Theorem genannt.</p>
+
+            <img src="./images/abtasttherorem.png" alt="" srcset=""> 
+        </article>
+        <article id="aufgabe2_d">
+            <h2>Nr.2 d</h2>
+            <p>Die Soundkarte sorgt mithilfe eines Tiefpassfilters für das Einhalten des Abtasttheorems, da es alle Frequenzen die >= fa / 2 sind herausfiltert. Dadurch wird Aliasing verhindert.</p>
+        </article>
+        <article id="aufgabe2_e">
+            <h2>Nr.2 e</h2>
+
+            <pre>
+            for (int i=0; i < samples/2;i++) {		
+                readWavFile.sound[i] = readWavFile.sound[i*2];
+            }
+            
+            sampleRate = sampleRate/2;
+            numFrames = numFrames /2;	
+            </pre>
+        </article>
+        <article id="aufgabe2_f">
+            <div id="id_for_dash">
+                <h2>Nr.2 f</h2>
+                <h3>Original (LO)</h3>
+                <audio controls><source src="./audio/sine_lo03.wav" type="audio/wav"></audio>
+
+                <p>nach Downsampling (LO)</p>
+                <audio controls><source src="./audio/sinus_lo_Fetteng.wav" type="audio/wav"></audio><br>
+                <img src="./images/nach_downsampling_lo.png" width="500px" height="250px">
+                <p>Frequenz: 3000Hz</p>
+
+
+                
+            </div>
+            
+
+
+            <div>
+                <h3>Original (HI)</h3>
+                <audio controls><source src="./audio/sine_hi05.wav" type="audio/wav"></audio>
+                <p>nach Downsampling (HI)</p>
+                <audio controls><source src="./audio/sinus_hi_Fetteng.wav" type="audio/wav"></audio><br>
+                <img src="./images/nach_downsampling_hi.png" width="500px" height="250px">
+                <p>Frequenz: 1000Hz</p>
+            </div>
+            
+            <strong><p>Wenn man geeignet bandbegrenzen würde, wären bei der sine_hi03.wav keine Veränderungen aufgetreten.
+                Es kam zur Verfälschung bei der Audiospur sine_hi00.wav, dadurch dass es keine geeignete Bandbegrenzung gibt und das Abtasttheorem nicht eingehalten werden kann.
+                Bei sine_lo03.wav kam es zu keiner Verfälschung, weil das Abtasttheorem nach Verringerung der Abtastfrequenz trotzdem eingehalten wurde.</p></strong>
+        </article>
+    </section>
+    <section id="aufgabe3">
+        <article id="aufgabe3_a">
+            <h2>Nr.3a)</h2>
+            <p>Bei 16 bit Auflösung ist die höchstmögliche Anzahl der darstellbaren Amplitudenwerte 216=65536 und bei 8 bit Auflösung sind es 28=256.</p>
+        </article>
+        <article id="aufgabe3_b">
+                <h2>Nr.3b)</h2>
+                <pre>
+                int reduced_bits = 4;
+                for (int i=0; i < samples;i++) {				
+                    readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
+                    readWavFile.sound[i] *= Math.pow(2.0, reduced_bits);				
+                }
+                </pre>
+        </article>
+        <article id="aufgabe3_c">
+            <h2>Nr.3c)</h2>
+            <h3>Sprache:</h3>
+            <table>
+                <tr>
+                    <td style="width: 500px;"><audio controls><source src="./audio/sprache.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
+                    <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
+                    <td style="width: 500px;"><audio controls><source src="./audio/output_sprache_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
+                </tr>
+                <a href="./images/sprache_original.png"><img src="./images/sprache_original.png" width="500px"> </a>
+                <a href="./images/sprache_4bit_reduziert.png"><img src="./images/sprache_4bit_reduziert.png" width="500px"></a>
+                <a href="./images/sprache_12bit_reduziert.png"><img src="./images/sprache_12bit_reduziert.png" width="500px" ></a>
+                
+            </table>
+            <ol>
+                <p>Die obige Grafik zeigt die Bitreduktion der monoton Sprachaufnahme im Originalzustand (links),
+                    der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend) und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)
+                Wie in der Grafik zu sehen ist, sind die Unterschiede azwischen der Orginalaufnahme und der 4 Bit reduzierten Aufnahme maginal. 
+                    Große unterschiede sind jedoch auf der 12 Bit reduzierten Aufnahme zu erkennen. 
+                Bei dieser ist die Stimme kaum noch zu verstehen. Auch im Spektrogramm ist dies deutlich zu erkennen, da die entweder sehr starke Ausschläge auftreten, 
+                    oder im Orginal vorhandene Frequenzen jetzt nicht mehr vorliegen. 
+                </p>
+            </ol>
+
+            <h3>Musik:</h3>
+            <table>
+                <tr>
+                    <td style="width: 500px;"><audio controls><source src="./audio/musik.wav" type="audio/wav"></audio><p>Originalaufnahme.</p><br></td>   
+                    <td style="width: 500px;"><audio controls><source src="./audio/output_musik_4bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 4 Bit Reduktion.</p><br></td>
+                    <td style="width: 500px;"><audio controls><source src="./audio/output_musik_12bit_aufgabe3b.wav" type="audio/wav"></audio><p>Aufnahme mit 12 Bit Reduktion.</p><br></td>
+                </tr>
+                <a href="./images/musik_original.png"><img src="./images/musik_original.png" width="500px" height="250px"></a>
+                <a href="./images/musik_4bit_reduziert.png"><img src="./images/musik_4bit_reduziert.png" width="500px" height="250px"></a>
+                <a href="./images/musik_12bit_reduziert.png"><img src="./images/musik_12bit_reduziert.png" width="500px" height="250px"></a> 
+                
+                
+            </table>
+            <ol>
+                <li>Die obige Grafik zeigt die Bitreduktion der Musikaufnahme im Originalzustand (links), der Aufnahme mit 4 Bit Reduktion (12 Bit verbleibend)
+                    und der Aufnahme mit 12 Bit Reduktion (4 Bit verbleibend)</li>
+                <li>Im Gegensatz zur Sprachaufnahme, ist selbst bei 12 Bit Reduktion (also 4 Bit verbleibend) die Musik deutlich zu hören, auch wenn eine sehr starke Störung wahrnehmbar ist. </li> 
+                <li>Die Unterschiede hinsichtlich der Auswirkungen der Bitreduktion auf Musik und Sprache werden damit Begründet, dass bei der Musik eine durchgehende Geräuschkulisse geschaffen 
+                    wird und somit ein dichteres Spektrum hinsichtlich Frequenz und Lautstärke erreicht wird. Der durch die Bitreduktion entstehende Fehler wird somit zwar hörbar, aber es stehen 
+                    noch genug Informationen zur Verfügung. Aufgrund der starken Schwankungen bei der Sprache und der fehlenden Durchgängigkeit wirkt sich ein auftretender Fehler somit stärker aus.
+                </li>
+            </ol>
+        </article>
+        <article id="aufgabe3_d">
+            <h3>Nr.3d)</h3>       
+        
+            <p>
+                Besonders störend ist das Rauschen, welches entsteht. Es wirkt zunächst im Hintergrund und verlagert sich "gefühlt" mit zunehmender Reduktion immer weiter in den Vordergrund, 
+                bis zuletzte die Musik / Sprache kaum bis gar nicht mehr zu verstehen ist. 
+            </p>
+        </article>
+        <article id="aufgabe3_e">
+            <h3>Nr.3e)</h3>
+            <pre>
+            reduced_bits = 1;
+            for (int i=0; i < samples;i++) {			
+                readWavFile.sound[i] /= Math.pow(2.0, reduced_bits);
+                readWavFile.sound[i] *= Math.pow(2.0, 16 - reduced_bits -1);				
+            }
+            </pre>
+        </article>
+        <article id="aufgabe3_f">
+            <h2>Nr.3f</h2>
+            <strong>1-Bit Reduzierung ( Musikdatei )</strong>
+            <br>
+            <a href="./images/musik_1bit.png"><img src="./images/musik_1bit.png" width="500px"></a> 
+            <br>
+            <br>
+            <strong>8-Bit Reduzierung ( Musikdatei )</strong>
+            <br>
+            <a href="./images/musik_8bit.png"><img src="./images/musik_8bit.png" width="500px"></a> 
+            <br>
+            <br>
+            <br>
+            <strong>1-Bit Reduzierung ( Sprachdatei )</strong>
+            <br>
+            <a href="./images/sprache_1bit.png"><img src="./images/sprache_1bit.png" width="500px"></a> 
+            <br>
+            <br>
+            <strong>8-Bit Reduzierung ( Sprachdatei )</strong>
+            <br>
+            <a href="./images/sprache_8bit.png"><img src="./images/sprache_8bit.png" width="500px"></a> 
+            <br>
+            
+            <p>
+                Bei beiden Dateien führt eine 1-Bit Reduzierung zu durchgängigem Rauschen
+        
+                Je höher die Bitzahl um die reduziert wird, desto schwächer ist das Rauschen
+            </p>
+        </article>
+    </section>
+</main>
+
+
+    
+    
+    
+
+    
+
+
+    
+
+   
         
 </body>
 </html>
