@@ -40,3 +40,6 @@ article >div > span{
     border-bottom: 1px dashed black
 }
 
+main > h1{
+    padding: 20px;
+}
