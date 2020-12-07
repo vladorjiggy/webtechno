@@ -2,7 +2,9 @@
     box-sizing: border-box;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
+main{
+    margin: 0 20%
+}
 header{
     display: flex;
     align-items: flex-end;
