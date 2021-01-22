@@ -54,7 +54,7 @@ main > h1{
     padding: 10px;
     color: white;
     text-align: center;
-    animation: myanimation 2s infinite;
+    animation: alertanimation 2s infinite;
 }
 
 .sound_wrapper{
@@ -65,8 +65,11 @@ main > h1{
 .sound_wrapper > div{    
     width: 50%;    
 }
+img{
+    margin: 10px 0;
+}
 
-@keyframes myanimation {
+@keyframes alertanimation {
     0% {background-color: red;}
     25%{background-color:yellow; color: black}
     50%{background-color:green;}
